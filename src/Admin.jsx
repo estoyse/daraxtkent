@@ -5,11 +5,12 @@ import { useDocumentData } from 'react-firebase-hooks/firestore';
 import Swal from 'sweetalert2';
 import { getAuth, signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { Navigate } from 'react-router-dom';
 
 const Admin = () => {
   const firestore = useContext(Context);
   const [id] = useDocumentData(doc(firestore, 'id/lastId'));
-  const [user] = useAuthState(getAuth());
+  const [user, loading] = useAuthState(getAuth());
 
   const nameRef = useRef();
   const scientificNameRef = useRef();
@@ -65,6 +66,7 @@ const Admin = () => {
   };
   return (
     <div className='admin'>
+      {!user && !loading && <Navigate to='/login' />}
       <form className='form' onSubmit={handleSubmit}>
         <p className='title'>Daraxt qo'shish </p>
         <span>Daraxt joylashuvi</span>

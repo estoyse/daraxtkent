@@ -8,7 +8,9 @@ const Navbar = () => {
   const [user] = useAuthState(auth);
   return (
     <div className='navbar'>
-      <div className='logo'>Daraxtkent</div>
+      <Link to='/' className='logo nav-link '>
+        Daraxtkent
+      </Link>
       <div className='nav-links'>
         {user ? (
           <Link className='nav-link' to='/admin'>

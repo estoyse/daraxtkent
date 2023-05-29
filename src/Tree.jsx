@@ -36,6 +36,10 @@ const Tree = ({ data }) => {
             <b>Daraxt diametri: </b>
             {data.diameter}
           </span>
+          <span className='span-block'>
+            <b>Joylashuvi: </b>
+            {`${data.coordinates[0]}N ${data.coordinates[1]}E`}
+          </span>
         </p>
       </Popup>
     </Circle>

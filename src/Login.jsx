@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import { signInWithPopup, GoogleAuthProvider, getAuth } from 'firebase/auth';
 import { Navigate } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Login = () => {
   const provider = new GoogleAuthProvider();
   const auth = getAuth();
+  const [user] = useAuthState(auth);
 
   const handleClick = () => {
     signInWithPopup(auth, provider).catch(error => {
@@ -17,7 +19,7 @@ const Login = () => {
       <button className='btn' onClick={handleClick}>
         Continue With Google
       </button>
-      {auth && <Navigate to='/' />}
+      {user && <Navigate to='/' />}
     </div>
   );
 };

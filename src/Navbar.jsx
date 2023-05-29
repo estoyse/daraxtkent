@@ -1,15 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Context } from './main';
 import { getAuth } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Navbar = () => {
   const auth = getAuth();
+  const [user] = useAuthState(auth);
+  console.log(user);
   return (
     <div className='navbar'>
-      <div className='logo'>Urban Tree Managment</div>
+      <div className='logo'>Daraxtkent</div>
       <div className='nav-links'>
-        {auth ? (
+        {user ? (
           <Link className='nav-link' to='/admin'>
             Daraxt Qo'shish
           </Link>

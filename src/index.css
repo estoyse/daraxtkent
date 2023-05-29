@@ -3,6 +3,13 @@
   padding: 0;
   box-sizing: border-box;
 }
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
 .navbar {
   font-family: 'Lato', sans-serif;
   height: 50px;
@@ -314,7 +321,10 @@
 .submit:hover {
   background-color: rgb(56, 90, 194);
 }
-
+.submit:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
 @keyframes pulse {
   from {
     transform: scale(0.9);

@@ -66,7 +66,7 @@ const Admin = () => {
   };
   return (
     <div className='admin'>
-      {!user && !loading && <Navigate to='/login' />}
+      {!user && !loading && <Navigate to='/' />}
       <form className='form' onSubmit={handleSubmit}>
         <p className='title'>Daraxt qo'shish </p>
         <span>Daraxt joylashuvi</span>

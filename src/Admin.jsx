@@ -49,8 +49,17 @@ const Admin = () => {
       toast: true,
     });
   };
-  const signOutUser = () => {
-    signOut(getAuth());
+  const signOutUser = async () => {
+    await signOut(getAuth());
+    Swal.fire({
+      title: 'Google Hisobdan chiqildi',
+      timer: 4000,
+      position: 'bottom',
+      icon: 'info',
+      showConfirmButton: false,
+      timerProgressBar: true,
+      toast: true,
+    });
   };
   return (
     <div className='admin'>

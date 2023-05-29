@@ -50,13 +50,10 @@ a {
 }
 
 .tree {
-  fill: rgb(50, 109, 204);
+  fill: #36b54e;
   fill-opacity: 1;
   stroke-width: 1px;
   stroke: #fff;
-}
-.nonOrnomental {
-  fill: darksalmon;
 }
 .span-block {
   display: block;

@@ -8,7 +8,7 @@ const Tree = ({ data }) => {
       pathOptions={{ color: 'red' }}
       stroke={false}
       radius={3}
-      className={data.isOrnomental ? 'tree' : 'tree nonOrnomental'}
+      className='tree'
     >
       <Popup>
         <p>

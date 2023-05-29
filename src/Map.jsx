@@ -5,7 +5,13 @@ import Tree from './Tree';
 
 const Map = ({ trees }) => {
   return (
-    <MapContainer center={config.center} zoom={17} minZoom={16} maxZoom={21}>
+    <MapContainer
+      center={config.center}
+      zoom={17}
+      minZoom={16}
+      maxZoom={21}
+      zoomControl={false}
+    >
       <TileLayer
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
         attribution='<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'

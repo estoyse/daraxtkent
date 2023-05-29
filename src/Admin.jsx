@@ -4,10 +4,12 @@ import { Context } from './main';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 import Swal from 'sweetalert2';
 import { getAuth, signOut } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Admin = () => {
   const firestore = useContext(Context);
   const [id] = useDocumentData(doc(firestore, 'id/lastId'));
+  const [user] = useAuthState(getAuth());
 
   const nameRef = useRef();
   const scientificNameRef = useRef();
@@ -116,7 +118,8 @@ const Admin = () => {
           Submit
         </button>
       </form>
-      <button className='submit' onClick={signOutUser}>
+
+      <button className='submit' onClick={signOutUser} disabled={!user}>
         Google hisobdan chiqish
       </button>
     </div>

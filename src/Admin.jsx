@@ -53,7 +53,7 @@ const Admin = () => {
     signOut(getAuth());
   };
   return (
-    <div className='admin' style={{ flexDirection: 'column' }}>
+    <div className='admin'>
       <form className='form' onSubmit={handleSubmit}>
         <p className='title'>Daraxt qo'shish </p>
         <span>Daraxt joylashuvi</span>

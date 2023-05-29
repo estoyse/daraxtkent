@@ -6,7 +6,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 const Navbar = () => {
   const auth = getAuth();
   const [user] = useAuthState(auth);
-  console.log(user);
   return (
     <div className='navbar'>
       <div className='logo'>Daraxtkent</div>

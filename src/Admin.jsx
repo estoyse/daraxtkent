@@ -3,11 +3,11 @@ import React, { useContext, useRef } from 'react';
 import { Context } from './main';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 import Swal from 'sweetalert2';
+import { getAuth, signOut } from 'firebase/auth';
 
 const Admin = () => {
   const firestore = useContext(Context);
   const [id] = useDocumentData(doc(firestore, 'id/lastId'));
-  console.log(id);
 
   const nameRef = useRef();
   const scientificNameRef = useRef();
@@ -49,8 +49,11 @@ const Admin = () => {
       toast: true,
     });
   };
+  const signOutUser = () => {
+    signOut(getAuth());
+  };
   return (
-    <div className='admin'>
+    <div className='admin' style={{ flexDirection: 'column' }}>
       <form className='form' onSubmit={handleSubmit}>
         <p className='title'>Daraxt qo'shish </p>
         <span>Daraxt joylashuvi</span>
@@ -104,6 +107,9 @@ const Admin = () => {
           Submit
         </button>
       </form>
+      <button className='submit' onClick={signOutUser}>
+        Google hisobdan chiqish
+      </button>
     </div>
   );
 };

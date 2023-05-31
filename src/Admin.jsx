@@ -17,6 +17,7 @@ const Admin = () => {
   const [user, loading] = useAuthState(getAuth());
 
   const [adding, setAdding] = useState(false);
+  const [mapHidded, setMapHidded] = useState(true);
 
   const [lng, setLng] = useState(config.center[0]);
   const [lat, setLat] = useState(config.center[1]);
@@ -88,7 +89,12 @@ const Admin = () => {
       {!user && !loading && <Navigate to='/' />}
       <form className='form' onSubmit={handleSubmit}>
         <p className='title'>Daraxt qo'shish </p>
-        <span>Daraxt joylashuvi</span>
+        <span>
+          Daraxt joylashuvi{' '}
+          <span className='choose' onClick={() => setMapHidded(false)}>
+            xaritadan tanlash
+          </span>
+        </span>
         <div className='flex'>
           <label>
             <input
@@ -161,10 +167,20 @@ const Admin = () => {
         </button>
       </form>
 
-      <ContainerStyles className='map-container'>
+      <ContainerStyles
+        className={mapHidded ? 'map-container hidden' : 'map-container'}
+      >
         <Map>
           <DraggableMarker setLat={setLat} setLng={setLng} />
         </Map>
+        <div className='control'>
+          <button
+            className='button ok'
+            onClick={() => setMapHidded(!mapHidded)}
+          >
+            OK
+          </button>
+        </div>
       </ContainerStyles>
     </StyledAdmin>
   );

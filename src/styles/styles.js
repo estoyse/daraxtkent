@@ -196,6 +196,15 @@ export const StyledAdmin = styled.div`
       background: #fff;
       padding: 0 5px;
     }
+    .choose {
+      user-select: none;
+      color: gray;
+      cursor: pointer;
+      text-decoration: underline;
+      @media (min-width: 800px) {
+        display: none;
+      }
+    }
   }
   .button {
     border: none;
@@ -207,6 +216,9 @@ export const StyledAdmin = styled.div`
     font-size: 16px;
     transition: 0.3s ease;
     cursor: pointer;
+    &.ok {
+      display: none;
+    }
     &.signout {
       background: #ff3939;
     }
@@ -234,4 +246,22 @@ export const StyledAdmin = styled.div`
 export const ContainerStyles = styled.div`
   width: 100%;
   height: 100%;
+  @media (max-width: 800px) {
+    position: absolute;
+    padding: 60px 0;
+    background: #fff;
+    &.hidden {
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+    }
+    .control {
+      display: grid;
+      /* place-items: end; */
+    }
+    .button.ok {
+      display: block;
+      margin: 1rem 3rem 0 3rem;
+    }
+  }
 `;

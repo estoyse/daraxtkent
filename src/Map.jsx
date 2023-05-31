@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Polygon } from 'react-leaflet';
 import config from './config.json';
 import Tree from './Tree';
 
-const Map = ({ trees }) => {
+const Map = ({ trees, children }) => {
   return (
     <MapContainer
       center={config.center}
@@ -25,6 +25,7 @@ const Map = ({ trees }) => {
           <Tree key={tree.id} data={tree} />
         ))}
       </div>
+      {children}
     </MapContainer>
   );
 };

@@ -1,10 +1,11 @@
 import React from 'react';
+import { LoaderStyles } from './styles/styles';
 
 const Loading = ({ isLoading }) => {
   return (
-    <div className={isLoading ? 'loader' : 'loader hidden'}>
-      <div className='justify-content-center jimu-primary-loading'></div>
-    </div>
+    <LoaderStyles className={isLoading ? 'loader' : 'hidden loader'}>
+      <div className='square'></div>
+    </LoaderStyles>
   );
 };
 

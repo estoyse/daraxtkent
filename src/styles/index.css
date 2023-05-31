@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
+.tree {
+  fill: #36b54e;
+  fill-opacity: 1;
+  stroke-width: 1px;
+  stroke: #fff;
+}
+.span-block {
+  display: block;
+}

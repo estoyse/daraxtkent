@@ -2,6 +2,7 @@ import React from 'react';
 import { signInWithPopup, GoogleAuthProvider, getAuth } from 'firebase/auth';
 import { Navigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { LoginStyles } from './styles/styles';
 
 const Login = () => {
   const provider = new GoogleAuthProvider();
@@ -15,12 +16,10 @@ const Login = () => {
   };
 
   return (
-    <div className='login'>
-      <button className='btn' onClick={handleClick}>
-        Continue With Google
-      </button>
+    <LoginStyles className='login'>
+      <button onClick={handleClick}>Continue With Google</button>
       {user && <Navigate to='/' />}
-    </div>
+    </LoginStyles>
   );
 };
 

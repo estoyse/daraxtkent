@@ -5,6 +5,7 @@ import './styles/index.css';
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { BrowserRouter } from 'react-router-dom';
+import { YMaps } from '@pbe/react-yandex-maps';
 
 const app = initializeApp({
   apiKey: 'AIzaSyCi1qwNgo1CByx5hsGN4tBqbci7CldFbqk',
@@ -21,9 +22,11 @@ const firestore = getFirestore(app);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Context.Provider value={firestore}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <YMaps>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </YMaps>
     </Context.Provider>
   </React.StrictMode>
 );

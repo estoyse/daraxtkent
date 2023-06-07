@@ -2,6 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: poppins, sans-serif;
+}
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  border-radius: 5px;
 }
 input,
 textarea,
@@ -19,6 +27,7 @@ input::-webkit-inner-spin-button {
 
 /* Firefox */
 input[type='number'] {
+  appearance: textfield;
   -moz-appearance: textfield;
 }
 

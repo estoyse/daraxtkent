@@ -9,7 +9,7 @@ export const NavbarStyles = styled.nav`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 99999;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -28,7 +28,7 @@ export const NavbarStyles = styled.nav`
     text-decoration: none;
   }
 `;
-export const LoaderStyles = styled.div`
+export const StyledLoader = styled.div`
   position: absolute;
   top: 0;
   bottom: 0;
@@ -92,13 +92,148 @@ export const LoaderStyles = styled.div`
     }
   }
 `;
-export const LoginStyles = styled.div`
+export const Container = styled.div`
+  width: 100%;
   height: 100vh;
+  overflow: hidden;
+`;
+export const StyledModal = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 11;
+  margin-top: 50px;
+  padding-bottom: 50px;
+  height: 100%;
+  background: #0008;
+  backdrop-filter: blur(5px);
+  width: 350px;
+  translate: 100%;
+  transition: translate 0.2s ease-in;
+  &.open {
+    translate: 0;
+  }
+  @media (max-width: 700px) {
+    width: 100%;
+    padding: 0 3rem;
+    padding-bottom: 3rem;
+  }
+  @media (max-width: 420px) {
+    padding: 0;
+    padding-bottom: 3rem;
+  }
+`;
+export const StyledForm = styled.form`
+  height: 100%;
+  width: 100%;
+  padding: 1rem 10px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
+  color: #fff;
+  overflow: auto;
+  .title {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      height: 18px;
+      width: 18px;
+      border-radius: 50%;
+      left: 0px;
+      background-color: #fff;
+    }
+    &::after {
+      animation: pulse 1s linear infinite;
+    }
+    @keyframes pulse {
+      from {
+        transform: scale(0.9);
+        opacity: 1;
+      }
+      to {
+        transform: scale(1.8);
+        opacity: 0;
+      }
+    }
+  }
+  .flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+  }
+  label {
+    position: relative;
+    width: 100%;
+    .input {
+      width: 100%;
+      padding: 15px;
+      outline: 0;
+      border: 1px solid #fffd;
+      border-radius: 10px;
+      background: transparent;
+      color: #fff;
+    }
+    .input-name {
+      position: absolute;
+      top: -20px;
+      left: 10px;
+      font-size: 0.9em;
+      transition: 0.3s ease;
+      pointer-events: none;
+      padding: 0 5px;
+    }
+  }
+  .choose {
+    cursor: pointer;
+    user-select: none;
+    text-decoration: underline;
+    @media (min-width: 700px) {
+      display: none;
+    }
+  }
+`;
+
+export const StyledButton = styled.button`
+  border: none;
+  outline: none;
+  background-color: royalblue;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  transition: 0.3s ease;
+  cursor: pointer;
+  &.ok {
+    display: none;
+  }
+  &.signout {
+    background: #ff3939;
+  }
+  &:hover {
+    opacity: 0.9;
+    scale: 0.98;
+  }
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+`;
+
+export const StyledLogin = styled.div`
+  height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #e8e8e8;
   button {
     position: relative;
     display: inline-block;
@@ -119,149 +254,6 @@ export const LoginStyles = styled.div`
     &:active {
       transform: translateY(-1px);
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    }
-  }
-`;
-export const StyledAdmin = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  .form {
-    position: relative;
-    align-items: flex-start;
-    margin: 20px;
-    padding-top: 50px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background-color: #fff;
-    border-radius: 20px;
-    font-family: poppins, sans-serif;
-    .title {
-      font-size: 28px;
-      color: royalblue;
-      font-weight: 600;
-      letter-spacing: -1px;
-      position: relative;
-      display: flex;
-      align-items: center;
-      padding-left: 30px;
-      &::before,
-      &::after {
-        content: '';
-        position: absolute;
-        height: 16px;
-        width: 16px;
-        border-radius: 50%;
-        left: 0px;
-        background-color: royalblue;
-      }
-      &::before {
-        width: 18px;
-        height: 18px;
-        background-color: royalblue;
-      }
-
-      &::after {
-        width: 18px;
-        height: 18px;
-        animation: pulse 1s linear infinite;
-      }
-    }
-    .flex {
-      display: flex;
-      width: 100%;
-      gap: 6px;
-    }
-    label {
-      position: relative;
-      width: 100%;
-      .input {
-        width: 100%;
-        padding: 15px;
-        outline: 0;
-        border: 1px solid rgba(105, 105, 105, 0.397);
-        border-radius: 10px;
-      }
-    }
-    .input-name {
-      position: absolute;
-      top: -10px;
-      left: 10px;
-      color: grey;
-      font-size: 0.9em;
-      transition: 0.3s ease;
-      pointer-events: none;
-      background: #fff;
-      padding: 0 5px;
-    }
-    .choose {
-      user-select: none;
-      color: gray;
-      cursor: pointer;
-      text-decoration: underline;
-      @media (min-width: 800px) {
-        display: none;
-      }
-    }
-  }
-  .button {
-    border: none;
-    outline: none;
-    background-color: royalblue;
-    padding: 10px;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 16px;
-    transition: 0.3s ease;
-    cursor: pointer;
-    &.ok {
-      display: none;
-    }
-    &.signout {
-      background: #ff3939;
-    }
-    &:hover {
-      opacity: 0.9;
-      scale: 0.98;
-    }
-    &:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
-    }
-  }
-  @keyframes pulse {
-    from {
-      transform: scale(0.9);
-      opacity: 1;
-    }
-
-    to {
-      transform: scale(1.8);
-      opacity: 0;
-    }
-  }
-`;
-export const ContainerStyles = styled.div`
-  width: 100%;
-  height: 100%;
-  @media (max-width: 800px) {
-    position: absolute;
-    padding: 60px 0;
-    background: #fff;
-    &.hidden {
-      opacity: 0;
-      pointer-events: none;
-      visibility: hidden;
-    }
-    .control {
-      display: grid;
-      /* place-items: end; */
-    }
-    .button.ok {
-      display: block;
-      margin: 1rem 3rem 0 3rem;
     }
   }
 `;

@@ -31,17 +31,11 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
-.leaflet-container {
-  height: 100%;
-  width: 100%;
+.alert p {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 }
-
-.tree {
-  fill: #36b54e;
-  fill-opacity: 1;
-  stroke-width: 1px;
-  stroke: #fff;
-}
-.span-block {
-  display: block;
+.alert p span {
+  text-align: left;
 }

@@ -1,5 +1,5 @@
 {
-  "name": "urban-forest-managment",
+  "name": "daraxtkent",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,12 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@pbe/react-yandex-maps": "^1.2.4",
     "firebase": "^9.22.1",
-    "leaflet": "^1.9.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
-    "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.11.2",
     "styled-components": "^5.3.11",
     "sweetalert2": "^11.7.5"

@@ -1,29 +1,35 @@
-import React, { useContext, useState } from 'react';
-import 'leaflet/dist/leaflet.css';
+import { useContext, useState } from 'react';
 import { Context } from './main';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { collection } from 'firebase/firestore';
-import Loading from './Loading';
+import Loading from './components/Loading';
 import Map from './Map';
-import Navbar from './Navbar';
-import { Route, Routes } from 'react-router-dom';
-import Login from './Login';
-import Admin from './Admin';
+import Navbar from './components/Navbar';
+import Modal from './Modal';
 function App() {
   const firestore = useContext(Context);
-  const [trees, loading, error] = useCollectionData(
-    collection(firestore, 'trees')
-  );
+  const [trees, loading] = useCollectionData(collection(firestore, 'trees'));
+  const [modalOpen, setModalOpen] = useState(false);
+  const [placemarkCoords, setPlacemarkCoords] = useState([
+    41.309805, 69.248903,
+  ]);
+
   return (
-    <div className='App' style={{ width: '100%', height: '100vh' }}>
-      <Navbar />
+    <>
+      <Navbar modalOpen={modalOpen} setModalOpen={setModalOpen} />
       <Loading isLoading={loading} />
-      <Routes>
-        <Route path='/' element={<Map trees={trees} />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/admin' element={<Admin />} />
-      </Routes>
-    </div>
+      <Map
+        trees={trees}
+        setPlacemarkCoords={setPlacemarkCoords}
+        modalOpen={modalOpen}
+      />
+      <Modal
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        placemarkCoords={placemarkCoords}
+        setPlacemarkCoords={setPlacemarkCoords}
+      />
+    </>
   );
 }
 

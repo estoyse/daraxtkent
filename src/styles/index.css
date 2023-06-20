@@ -2,6 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: poppins, sans-serif;
+}
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  border-radius: 5px;
 }
 input,
 textarea,
@@ -19,20 +27,15 @@ input::-webkit-inner-spin-button {
 
 /* Firefox */
 input[type='number'] {
+  appearance: textfield;
   -moz-appearance: textfield;
 }
 
-.leaflet-container {
-  height: 100%;
-  width: 100%;
+.alert p {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 }
-
-.tree {
-  fill: #36b54e;
-  fill-opacity: 1;
-  stroke-width: 1px;
-  stroke: #fff;
-}
-.span-block {
-  display: block;
+.alert p span {
+  text-align: left;
 }

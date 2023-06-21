@@ -16,7 +16,6 @@
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
     "react-router-dom": "^6.11.2",
-    "styled-components": "^5.3.11",
     "sweetalert2": "^11.7.5",
     "tailwindcss-animation-delay": "^1.0.7"
   },

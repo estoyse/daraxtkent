@@ -12,8 +12,8 @@ const Navbar = () => {
     <nav
       className={
         scroll
-          ? 'z-10 w-full fixed backdrop-blur bg-[#0f172a87] ease-linear transition-all'
-          : 'z-10 w-full fixed ease-linear transition-all'
+          ? 'z-20 w-full fixed backdrop-blur bg-[#fff9] dark:bg-[#0f172a87] ease-linear transition-all'
+          : 'z-20 w-full fixed ease-linear transition-all'
       }
     >
       <div className='max-w-7xl mx-auto px-6 md:px-12 xl:px-6'>

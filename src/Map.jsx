@@ -5,7 +5,6 @@ import Swal from 'sweetalert2';
 import { Context } from './main';
 import config from './config.json';
 import Modal from './Modal';
-import { Container } from './styles/styles';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { collection } from 'firebase/firestore';
 import Loading from './components/Loading';
@@ -59,7 +58,7 @@ const MapContainer = () => {
   return (
     <>
       <Loading isLoading={loading} />
-      <nav className='z-10 w-full fixed backdrop-blur bg-slate-900'>
+      <nav className='z-10 w-full fixed backdrop-blur  bg-[#fffe] dark:bg-[#0f172a]'>
         <div className='max-w-7xl mx-auto px-6 md:px-12 xl:px-6'>
           <div className='flex flex-wrap items-center justify-between py-2 gap-6 md:py-4 md:gap-0 relative'>
             <div className='relative z-20 w-full flex justify-between  md:px-0'>
@@ -82,7 +81,7 @@ const MapContainer = () => {
           </div>
         </div>
       </nav>
-      <Container>
+      <div className='w-full h-[100vh] overflow-hidden'>
         <Map
           defaultState={{ center: config.center, zoom: 17 }}
           height='100%'
@@ -124,7 +123,7 @@ const MapContainer = () => {
             }
           />
         </Map>
-      </Container>
+      </div>
       <Modal
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}

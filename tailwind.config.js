@@ -124,6 +124,7 @@ export default {
       ping: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
       pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       bounce: 'bounce 1s infinite',
+      loading: 'loading 0.8s infinite ease-in-out',
     },
     aspectRatio: {
       auto: 'auto',
@@ -577,6 +578,18 @@ export default {
       full: '100%',
     }),
     keyframes: {
+      loading: {
+        '0%, 80%, 100%': {
+          opacity: 0.75,
+          boxShadow: '0 0 rgb(203 213 225)',
+          height: '32px',
+        },
+        '40%': {
+          opacity: 1,
+          boxShadow: '0 -8px rgb(203 213 225)',
+          height: '40px',
+        },
+      },
       spin: {
         to: {
           transform: 'rotate(360deg)',
@@ -975,5 +988,5 @@ export default {
     'active',
     'disabled',
   ],
-  plugins: [],
+  plugins: [require('tailwindcss-animation-delay')],
 };

@@ -226,7 +226,7 @@ const AddingForm = ({ setModalOpen, placemarkCoords, setPlacemarkCoords }) => {
           type='submit'
           className='relative flex h-9 items-center justify-center px-4 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 cursor-pointer '
         >
-          <span className='relative text-sm font-semibold text-white disabled:cursor-not-allowed'>
+          <span className='relative text-sm  text-white disabled:cursor-not-allowed'>
             Qo&apos;shish
           </span>
         </button>
@@ -235,9 +235,7 @@ const AddingForm = ({ setModalOpen, placemarkCoords, setPlacemarkCoords }) => {
           type='submit'
           className='relative flex h-9 items-center justify-center px-4 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 cursor-pointer '
         >
-          <span className='relative text-sm font-semibold text-white'>
-            Googledan chiqish
-          </span>
+          <span className='relative text-sm text-white'>Googledan chiqish</span>
         </button>
       </div>
     </form>
@@ -245,85 +243,3 @@ const AddingForm = ({ setModalOpen, placemarkCoords, setPlacemarkCoords }) => {
 };
 
 export default AddingForm;
-
-/* <StyledForm onSubmit={handleSubmit}>
-      <p className='title'>Daraxt qo&apos;shish </p>
-      <span>
-        Daraxt joylashuvi{' '}
-        <span className='choose' onClick={() => setModalOpen(false)}>
-          Xaritadan tanlash
-        </span>
-      </span>
-      <div className='flex'>
-        <label>
-          <input
-            className='input'
-            type='number'
-            step='any'
-            required
-            value={placemarkCoords[0]}
-            onChange={e =>
-              setPlacemarkCoords(prevState => [e.target.value, prevState[1]])
-            }
-          />
-          <span className='input-name'>kenglik</span>
-        </label>
-
-        <label>
-          <input
-            className='input'
-            type='number'
-            step='any'
-            required
-            value={placemarkCoords[1]}
-            onChange={e =>
-              setPlacemarkCoords(prevState => [prevState[0], e.target.value])
-            }
-          />
-          <span className='input-name'>uzunlik</span>
-        </label>
-      </div>
-      <label>
-        <input className='input' type='text' ref={nameRef} required />
-        <span className='input-name'>Nomi</span>
-      </label>
-      <label>
-        <input className='input' type='text' ref={scientificNameRef} required />
-        <span className='input-name'>Ilmiy nomi</span>
-      </label>
-      <label>
-        <input
-          className='input'
-          value={`TSUE-${id?.count}`}
-          type='text'
-          readOnly
-        />
-        <span className='input-name'>Daraxt ID</span>
-      </label>
-
-      <label>
-        <input className='input' type='text' ref={maintainedByRef} required />
-
-        <span className='input-name'>Mas`ul</span>
-      </label>
-      <label>
-        <input className='input' ref={yearOfPlantRef} type='text' required />
-        <span className='input-name'>Daraxt ekilgan yili</span>
-      </label>
-      <label>
-        <input className='input' ref={diameterRef} type='text' required />
-        <span className='input-name'>Tana diametri</span>
-      </label>
-      <div className='flex'>
-        <StyledButton type='submit' className='button submit' disabled={adding}>
-          Submit
-        </StyledButton>
-        <StyledButton
-          type='button'
-          className='button signout'
-          onClick={() => signOut(getAuth())}
-        >
-          Google hisobdan chiqish
-        </StyledButton>
-      </div>
-    </StyledForm> */

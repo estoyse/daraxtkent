@@ -1,5 +1,4 @@
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { StyledModal } from './styles/styles';
 import { getAuth } from 'firebase/auth';
 import AddingForm from './components/AddingForm';
 import Login from './components/Login';
@@ -13,7 +12,11 @@ const Modal = ({
   const [user] = useAuthState(getAuth());
 
   return (
-    <StyledModal className={modalOpen ? 'open' : ''}>
+    <div
+      className={`bg-[#fffe] dark:bg-[#0f172a] fixed top-0 right-0 z-10 mt-[52px] w-full px-12 md:pb-[50px] md:px-0 h-full md:w-[350px] transition-transform duration-200 ease-in md:mt-[68px] ${
+        modalOpen ? 'translate-x-0' : 'translate-x-full'
+      }`}
+    >
       {user ? (
         <AddingForm
           setModalOpen={setModalOpen}
@@ -23,7 +26,7 @@ const Modal = ({
       ) : (
         <Login />
       )}
-    </StyledModal>
+    </div>
   );
 };
 

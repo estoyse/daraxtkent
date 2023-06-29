@@ -2,12 +2,13 @@ import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Clusterer, Map, Placemark, Polygon } from '@pbe/react-yandex-maps';
 import Swal from 'sweetalert2';
-import { Context } from './main';
-import config from './config.json';
-import Modal from './Modal';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { collection } from 'firebase/firestore';
+import config from './config.json';
+import { Context } from './main';
+import Modal from './Modal';
 import Loading from './components/Loading';
+import moment from 'moment/moment';
 
 const MapContainer = () => {
   const [zoom, setZoom] = useState(17);
@@ -26,7 +27,6 @@ const MapContainer = () => {
     customPopup.fire({
       title: `<span className='span-block'><b>Daraxt nomi: </b>${tree.name}</span>`,
       showCloseButton: true,
-      theme: 'dark',
       html: `<p>
         <span className='span-block'>
           <b>Ilmiy Nomi: </b>
@@ -52,9 +52,14 @@ const MapContainer = () => {
           <b>Joylashuvi: </b>
           ${tree.coordinates[0]}N, ${tree.coordinates[1]}E
         </span>
+        <span className='span-block'>
+          <b>Qo'shilgan vaqti: </b>
+          ${moment(tree.createdAt.toDate()).format('LLLL')}
+        </span>
       </p>`,
     });
   };
+
   return (
     <>
       <Loading isLoading={loading} />

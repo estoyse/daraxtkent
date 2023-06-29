@@ -1,5 +1,11 @@
 import { useContext, useRef, useState } from 'react';
-import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  doc,
+  serverTimestamp,
+  setDoc,
+} from 'firebase/firestore';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 import { Context } from '../main';
 import Swal from 'sweetalert2';
@@ -36,6 +42,7 @@ const AddingForm = ({ setModalOpen, placemarkCoords, setPlacemarkCoords }) => {
       yearOfPlant: +yearOfPlantRef.current.value,
       diameter: +diameterRef.current.value,
       id: `TSUE-${id.count}`,
+      createdAt: serverTimestamp(),
     });
     await setDoc(doc(firestore, 'id', 'lastId'), {
       count: id.count + 1,
@@ -153,7 +160,7 @@ const AddingForm = ({ setModalOpen, placemarkCoords, setPlacemarkCoords }) => {
           type='text'
           name='floating_tree_id'
           id='floating_tree_id'
-          className='block py-2.5 px-0 w-full text-sm text-slate-400 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+          className='cursor-not-allowed block py-2.5 px-0 w-full text-sm text-slate-400 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 focus:outline-none peer'
           placeholder=' '
           value={`TSUE-${id?.count}`}
           readOnly
@@ -205,6 +212,7 @@ const AddingForm = ({ setModalOpen, placemarkCoords, setPlacemarkCoords }) => {
         <div className='relative z-0 w-full mb-6 group'>
           <input
             type='number'
+            ref={diameterRef}
             step='0.1'
             name='floating_diameter'
             id='floating_diameter'

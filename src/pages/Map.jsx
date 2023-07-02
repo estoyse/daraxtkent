@@ -4,10 +4,10 @@ import { Clusterer, Map, Placemark, Polygon } from '@pbe/react-yandex-maps';
 import Swal from 'sweetalert2';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { collection } from 'firebase/firestore';
-import config from './config.json';
-import { Context } from './main';
-import Modal from './Modal';
-import Loading from './components/Loading';
+import config from '../config.json';
+import { Context } from '../main';
+import Modal from '../components/Modal';
+import Loading from '../components/Loading';
 import moment from 'moment/moment';
 
 const MapContainer = () => {

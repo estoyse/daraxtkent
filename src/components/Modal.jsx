@@ -1,7 +1,7 @@
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
-import AddingForm from './components/AddingForm';
-import Login from './components/Login';
+import AddingForm from './AddingForm';
+import Login from './Login';
 
 const Modal = ({
   setModalOpen,

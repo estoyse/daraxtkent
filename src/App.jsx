@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
-import Map from './Map';
-import Home from './Home';
-import About from './About';
+import Home from './pages/Home';
+import Map from './pages/Map';
+import About from './pages/About';
 
 function App() {
   return (
@@ -14,12 +14,4 @@ function App() {
     </>
   );
 }
-
-//   <Map
-//     trees={trees}
-//     setPlacemarkCoords={setPlacemarkCoords}
-//     modalOpen={modalOpen}
-//   />
-//
-// </>
 export default App;

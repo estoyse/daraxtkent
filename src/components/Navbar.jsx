@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 const Navbar = () => {
@@ -26,7 +26,7 @@ const Navbar = () => {
             className='hidden peer'
           />
           <div className='relative z-20 w-full flex justify-between lg:w-max md:px-0'>
-            <Link to='/'>
+            <NavLink to='/'>
               <img
                 src='/images/logo.svg'
                 alt=''
@@ -36,7 +36,7 @@ const Navbar = () => {
                     : 'w-40 ease-linear transition-all'
                 }
               />
-            </Link>
+            </NavLink>
 
             <div className='relative flex items-center lg:hidden max-h-10'>
               <label
@@ -72,12 +72,12 @@ const Navbar = () => {
             <div className='text-gray-600 dark:text-gray-300 lg:pr-4 lg:w-auto w-full lg:pt-0'>
               <ul className='tracking-wide font-medium lg:text-sm flex-col flex lg:flex-row gap-6 lg:gap-0'>
                 <li>
-                  <a
-                    href='#features'
+                  <NavLink
+                    to='/more'
                     className='block md:px-4 transition hover:text-primary'
                   >
                     <span>Biz Haqimizda</span>
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
                   <a
@@ -107,14 +107,14 @@ const Navbar = () => {
             </div>
 
             <div className='mt-12 lg:mt-0'>
-              <Link
+              <NavLink
                 to='/map'
                 className='relative flex h-9 w-full items-center justify-center px-4 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max'
               >
                 <span className='relative text-sm font-semibold text-white'>
                   Xarita
                 </span>
-              </Link>
+              </NavLink>
             </div>
           </div>
         </div>

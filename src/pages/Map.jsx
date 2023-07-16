@@ -19,6 +19,7 @@ const MapContainer = () => {
     41.309805, 69.248903,
   ]);
   const handleClick = tree => {
+    const coordinates = decimalToDMS(tree.coordinates);
     const customPopup = Swal.mixin({
       customClass: {
         htmlContainer: 'alert',
@@ -50,7 +51,7 @@ const MapContainer = () => {
         </span>
         <span className='span-block'>
           <b>Joylashuvi: </b>
-          ${tree.coordinates[0]}N, ${tree.coordinates[1]}E
+          ${coordinates[0]}N ${coordinates[1]}E
         </span>
         <span className='span-block'>
           <b>Qo'shilgan vaqti: </b>
@@ -59,7 +60,19 @@ const MapContainer = () => {
       </p>`,
     });
   };
+  function decimalToDMS(coords) {
+    let results = [];
 
+    for (let i = 0; i < coords.length; i++) {
+      const degrees = Math.floor(coords[i]);
+      const minutes = Math.floor((coords[i] - degrees) * 60);
+      const seconds = ((coords[i] - degrees - minutes / 60) * 3600).toFixed(2);
+
+      results.push(degrees + '°' + minutes + "'" + seconds + '"');
+    }
+
+    return results;
+  }
   return (
     <>
       <Loading isLoading={loading} />

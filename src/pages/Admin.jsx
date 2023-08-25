@@ -145,6 +145,7 @@ const Admin = () => {
         addDoc(collection(firestore, 'trees'), {
           ...tree,
           acceptedTime: serverTimestamp(),
+          acceptedBy: user.email,
         }).catch(e => console.log(e));
         deleteDoc(doc(firestore, 'pending', tree.id));
       } else if (result.isDenied) {

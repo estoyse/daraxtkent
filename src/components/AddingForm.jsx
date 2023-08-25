@@ -1,21 +1,14 @@
-import { useContext, useRef, useState } from 'react';
-import {
-  addDoc,
-  collection,
-  doc,
-  serverTimestamp,
-  setDoc,
-} from 'firebase/firestore';
-import { useDocumentData } from 'react-firebase-hooks/firestore';
-import { Context } from '../main';
+import { useRef, useState } from 'react';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { firestore } from '../main';
 import Swal from 'sweetalert2';
 import { getAuth, signOut } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const AddingForm = ({ setModalOpen, placemarkCoords, setPlacemarkCoords }) => {
-  const firestore = useContext(Context);
-  const [id] = useDocumentData(doc(firestore, 'id/lastId'));
-
   const [adding, setAdding] = useState(false);
+  const [user] = useAuthState(getAuth());
+
   const nameRef = useRef();
   const scientificNameRef = useRef();
   const maintainedByRef = useRef();
@@ -34,21 +27,20 @@ const AddingForm = ({ setModalOpen, placemarkCoords, setPlacemarkCoords }) => {
       timerProgressBar: true,
       toast: true,
     });
-    await addDoc(collection(firestore, 'trees'), {
+    await addDoc(collection(firestore, 'pending'), {
       name: nameRef.current.value,
       scientificName: scientificNameRef.current.value,
       coordinates: placemarkCoords,
       maintainedBy: maintainedByRef.current.value,
       yearOfPlant: +yearOfPlantRef.current.value,
       diameter: +diameterRef.current.value,
-      id: `TSUE-${id.count}`,
       createdAt: serverTimestamp(),
+      userInfo: {
+        name: user.displayName,
+        email: user.email,
+        photo: user.photoURL,
+      },
     });
-    await setDoc(doc(firestore, 'id', 'lastId'), {
-      count: id.count + 1,
-    });
-
-    setPlacemarkCoords([41.309805, 69.248903]);
     nameRef.current.value = '';
     scientificNameRef.current.value = '';
     maintainedByRef.current.value = '';
@@ -56,7 +48,7 @@ const AddingForm = ({ setModalOpen, placemarkCoords, setPlacemarkCoords }) => {
     diameterRef.current.value = '';
 
     Swal.fire({
-      title: "Muvaffaqiyatli qo'shildi",
+      title: 'Moderatorlarga Muvaffaqiyatli yuborildi!',
       timer: 4000,
       position: 'bottom',
       icon: 'success',
@@ -153,24 +145,6 @@ const AddingForm = ({ setModalOpen, placemarkCoords, setPlacemarkCoords }) => {
           className='peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
         >
           Ilmiy Nomi
-        </label>
-      </div>
-      <div className='relative z-0 w-full mb-6 group'>
-        <input
-          type='text'
-          name='floating_tree_id'
-          id='floating_tree_id'
-          className='cursor-not-allowed block py-2.5 px-0 w-full text-sm text-slate-400 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 focus:outline-none peer'
-          placeholder=' '
-          value={`TSUE-${id?.count}`}
-          readOnly
-          required
-        />
-        <label
-          htmlFor='floating_tree_id'
-          className='peer-focus:font-medium absolute text-sm text-gray-800 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
-        >
-          Daraxt ID
         </label>
       </div>
       <div className='relative z-0 w-full mb-6 group'>

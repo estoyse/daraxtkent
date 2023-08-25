@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './styles/index.css';
@@ -15,18 +15,14 @@ const app = initializeApp({
   messagingSenderId: '1088272268359',
   appId: '1:1088272268359:web:5b95df87ca562093f04562',
 });
-
-export const Context = createContext(null);
-const firestore = getFirestore(app);
+export const firestore = getFirestore(app);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Context.Provider value={firestore}>
-      <YMaps>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </YMaps>
-    </Context.Provider>
+    <YMaps>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </YMaps>
   </React.StrictMode>
 );

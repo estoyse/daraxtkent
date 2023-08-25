@@ -1,23 +1,32 @@
-import { useState, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Clusterer, Map, Placemark, Polygon } from '@pbe/react-yandex-maps';
 import Swal from 'sweetalert2';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { collection } from 'firebase/firestore';
+import { collection, onSnapshot } from 'firebase/firestore';
+import moment from 'moment/moment';
 import config from '../config.json';
-import { Context } from '../main';
+import { firestore } from '../main';
 import Modal from '../components/Modal';
 import Loading from '../components/Loading';
-import moment from 'moment/moment';
+import { decimalToDMS } from '../utils';
 
 const MapContainer = () => {
   const [zoom, setZoom] = useState(17);
-  const firestore = useContext(Context);
-  const [trees, loading] = useCollectionData(collection(firestore, 'trees'));
+  const [trees, setTrees] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [placemarkCoords, setPlacemarkCoords] = useState([
     41.309805, 69.248903,
   ]);
+  useEffect(
+    () =>
+      onSnapshot(collection(firestore, 'trees'), snapshot => {
+        setTrees(snapshot.docs.map(doc => doc.data()));
+        setLoading(false);
+      }),
+    []
+  );
+
   const handleClick = tree => {
     const coordinates = decimalToDMS(tree.coordinates);
     const customPopup = Swal.mixin({
@@ -34,6 +43,10 @@ const MapContainer = () => {
           ${tree.scientificName}
         </span>
         <span className='span-block'>
+          <b>Ekilgan yili: </b>
+          ${tree.yearOfPlant}
+        </span>
+        <span className='span-block'>
           <b>Daraxt yoshi: </b>
           ${new Date().getFullYear() - tree.yearOfPlant}
         </span>
@@ -42,7 +55,7 @@ const MapContainer = () => {
           ${tree.maintainedBy}
         </span>
         <span className='span-block'>
-          <b>Daraxt IDsi </b>
+          <b>Daraxt IDsi: </b>
           ${tree.id}
         </span>
         <span className='span-block'>
@@ -51,7 +64,9 @@ const MapContainer = () => {
         </span>
         <span className='span-block'>
           <b>Joylashuvi: </b>
-          ${coordinates[0]}N ${coordinates[1]}E
+          <a href='https://www.google.com/maps?q=${tree.coordinates[0]},${
+        tree.coordinates[1]
+      }&zoom=19'>${coordinates}</a>
         </span>
         <span className='span-block'>
           <b>Qo'shilgan vaqti: </b>
@@ -60,19 +75,7 @@ const MapContainer = () => {
       </p>`,
     });
   };
-  function decimalToDMS(coords) {
-    let results = [];
 
-    for (let i = 0; i < coords.length; i++) {
-      const degrees = Math.floor(coords[i]);
-      const minutes = Math.floor((coords[i] - degrees) * 60);
-      const seconds = ((coords[i] - degrees - minutes / 60) * 3600).toFixed(2);
-
-      results.push(degrees + '°' + minutes + "'" + seconds + '"');
-    }
-
-    return results;
-  }
   return (
     <>
       <Loading isLoading={loading} />
@@ -104,7 +107,6 @@ const MapContainer = () => {
           defaultState={{ center: config.center, zoom: 17 }}
           height='100%'
           width='100%'
-          defaultOptions={{ minZoom: 13 }}
           onWheel={e => setZoom(e.originalEvent.map.action._zoom)}
         >
           <Polygon

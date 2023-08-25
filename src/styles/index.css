@@ -10,10 +10,14 @@
 }
 ::-webkit-scrollbar {
   width: 4px;
+  height: 4px;
 }
 ::-webkit-scrollbar-thumb {
   background-color: #fff;
   border-radius: 5px;
+}
+#root {
+  min-height: 100vh;
 }
 input,
 textarea,
